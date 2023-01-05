@@ -87,7 +87,10 @@ const Leaderboard = () => {
 
     useEffect(() => {
         if(auth().name)
+        {
+            console.log(auth().name)
             getUsers();
+        }
     }, [auth().name])
 
     const handleTabChange = (event, newValue) => {
