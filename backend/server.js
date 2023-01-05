@@ -5,6 +5,7 @@ import routes from "./routes"
 
 mongo.connect();
 const app = express();
+const path = require('node:path');
 app.use(cors());
 app.use(express.json());
 app.use('/', routes);
