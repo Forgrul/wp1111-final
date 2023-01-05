@@ -86,7 +86,7 @@ const Leaderboard = () => {
     }
 
     useEffect(() => {
-        if(auth().name)
+        if(auth().name !== undefined)
         {
             console.log(auth().name)
             getUsers();
