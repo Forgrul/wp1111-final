@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
 
     const selfName = req.query.name;
     const selfRanking = sortedUsers.findIndex((user) => user.name === selfName) + 1;
+    console.log(selfRanking);
     const selfWPM = sortedUsers[selfRanking - 1].bestWPM;
 
     res.json({topUsers: top50, self: {username: selfName, bestWPM: selfWPM, ranking: selfRanking}});
