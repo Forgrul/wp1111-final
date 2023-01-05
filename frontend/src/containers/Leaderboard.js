@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Container from '@mui/material/Container';
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
@@ -76,6 +76,7 @@ const Leaderboard = () => {
     const [topUsers, setTopUsers] = useState([]); // {username, bestWPM, ranking}
     const [self, setSelf] = useState({});
     const [tabValue, setTabValue] = useState(0);
+    const { username } = useParams();
 
     const getUsers = async (selfName) => {
         setLoading(true);
@@ -86,13 +87,12 @@ const Leaderboard = () => {
     }
 
     useEffect(() => {
-        if(auth().name !== undefined)
+        if(username)
         {
-            const selfName = auth().name
-            console.log(selfName)
-            getUsers(selfName);
+            console.log(username)
+            getUsers(username);
         }
-    }, [auth()])
+    }, [username])
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);

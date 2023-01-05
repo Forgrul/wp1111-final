@@ -20,7 +20,7 @@ const App = () => (
                 <RequireAuth loginPath={"/signin"}>
                     <Profile />
                 </RequireAuth>} />
-            <Route path={"/leaderboard"} element={
+            <Route path={"/leaderboard/:username"} element={
                 <RequireAuth loginPath={"/signin"}>
                     <Leaderboard />
                 </RequireAuth>} />
