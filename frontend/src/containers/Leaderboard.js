@@ -69,7 +69,7 @@ const TabPanel = ({children, value, index}) => {
     );
   }
 
-const Leaderboard = ({selfName}) => {
+const Leaderboard = () => {
     const auth = useAuthUser();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -77,7 +77,7 @@ const Leaderboard = ({selfName}) => {
     const [self, setSelf] = useState({});
     const [tabValue, setTabValue] = useState(0);
 
-    const getUsers = async () => {
+    const getUsers = async (selfName) => {
         setLoading(true);
         const response = await axios.get("/leaderboard", {params: {name: selfName}});
         setTopUsers(response.data.topUsers);
@@ -86,8 +86,13 @@ const Leaderboard = ({selfName}) => {
     }
 
     useEffect(() => {
-            getUsers();
-    }, [])
+        if(auth().name !== undefined)
+        {
+            const selfName = auth().name
+            console.log(selfName)
+            getUsers(selfName);
+        }
+    }, [auth()])
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);
