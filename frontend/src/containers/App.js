@@ -4,10 +4,12 @@ import MainPage from "./MainPage"
 import SignUp from "./SignUp"
 import Profile from "./Profile";
 import Leaderboard from "./Leaderboard";
-import { RequireAuth } from "react-auth-kit";
+import { RequireAuth, useAuthUser } from "react-auth-kit";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-const App = () => (
+const App = () => {
+    const auth = useAuthUser();
+    return (
     <Router>
         <Routes>
             <Route path={"/"} element={
@@ -22,10 +24,10 @@ const App = () => (
                 </RequireAuth>} />
             <Route path={"/leaderboard"} element={
                 <RequireAuth loginPath={"/signin"}>
-                    <Leaderboard />
+                    <Leaderboard selfName={auth().name}/>
                 </RequireAuth>} />
         </Routes>
     </Router>
-);
+)};
 
 export default App;
