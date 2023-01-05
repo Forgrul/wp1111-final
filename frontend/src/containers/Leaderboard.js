@@ -91,7 +91,7 @@ const Leaderboard = () => {
             console.log(auth().name)
             getUsers();
         }
-    }, [auth().name])
+    }, [auth()])
 
     const handleTabChange = (event, newValue) => {
         setTabValue(newValue);
